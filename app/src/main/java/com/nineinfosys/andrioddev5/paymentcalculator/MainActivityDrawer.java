@@ -156,6 +156,7 @@ public class MainActivityDrawer extends AppCompatActivity implements View.OnClic
                     fragmentTransaction.replace(R.id.containerView, new BMRFragment()).commit();*/
 
                     Intent intent = new Intent(MainActivityDrawer.this, MainActivityDrawer.class);
+                    finish();
                     startActivity(intent);
                 }
 
