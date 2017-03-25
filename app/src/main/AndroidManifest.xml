@@ -23,7 +23,8 @@
         android:theme="@style/AppTheme">
 
         <activity android:name="com.nineinfosys.andrioddev5.paymentcalculator.MainActivityDrawer"
-            android:configChanges="orientation|screenSize|keyboardHidden">
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
