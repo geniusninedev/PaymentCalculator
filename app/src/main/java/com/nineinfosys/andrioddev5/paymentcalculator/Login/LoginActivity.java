@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -26,6 +27,8 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.nineinfosys.andrioddev5.paymentcalculator.MainActivityDrawer;
 import com.nineinfosys.andrioddev5.paymentcalculator.R;
 
@@ -41,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     private CallbackManager callbackManager;
     private FirebaseAuth firebaseAuth;
 
-
+    private DatabaseReference mDataBase;
     //User for Facebook data
     private UserFacebookData userFacebookData;
 
@@ -51,7 +54,13 @@ public class LoginActivity extends AppCompatActivity {
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
         setContentView(R.layout.activity_login);
+        firebaseAuth=FirebaseAuth.getInstance();
+        mDataBase = FirebaseDatabase.getInstance().getReference().child(getString(R.string.app_id)).child("Users");
         startAuthentication();
+        LoginActivity.this.getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+        );
+
     }
 
     private void startAuthentication(){
@@ -78,7 +87,6 @@ public class LoginActivity extends AppCompatActivity {
                                 try {
 
                                     userFacebookData = new UserFacebookData();
-
                                     userFacebookData.setEmail(object.getString("email"));
                                     userFacebookData.setFacebookid(object.getString("id").toString());
                                     userFacebookData.setUsername(object.getString("name").toString());
@@ -137,8 +145,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 else {
-                    //updateUserProfile();
-                    //uploadAppUsersDataToAzure();
+                    CreateNewUserInDatabase();
                     Log.e("LoginActivity:", "Logged in and directing to main activity");
                     Intent loginIntent = new Intent(LoginActivity.this, MainActivityDrawer.class);
                     loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -163,7 +170,7 @@ public class LoginActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch(keyCode){
             case KeyEvent.KEYCODE_BACK:
-              finish();
+                finish();
                 return true;
         }
         return super.onKeyDown(keyCode, event);
@@ -177,5 +184,14 @@ public class LoginActivity extends AppCompatActivity {
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
             //Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
         }
+    }
+    private void CreateNewUserInDatabase(){
+
+        String user_id = firebaseAuth.getCurrentUser().getUid();
+        DatabaseReference current_user_db = mDataBase.child(user_id);
+        current_user_db.child("Name").setValue(userFacebookData.getUsername());
+        current_user_db.child("FacebookId").setValue(userFacebookData.getFacebookid());
+        current_user_db.child("Email").setValue(userFacebookData.getEmail());
+        current_user_db.child("Gender").setValue(userFacebookData.getGender());
     }
 }
