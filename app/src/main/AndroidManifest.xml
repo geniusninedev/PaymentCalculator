@@ -20,7 +20,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name=".LoginActivity.CustomApplication">
 
         <activity android:name="com.nineinfosys.andrioddev5.paymentcalculator.MainActivityDrawer"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -75,14 +76,24 @@
     </activity>
 
         <activity
-            android:name=".Login.LoginActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden" />
-        <activity
-            android:name=".RequestApp"
+            android:name="com.nineinfosys.andrioddev5.paymentcalculator.RequestApp"
             android:configChanges="orientation|screenSize|keyboardHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivityDrawer" />
+                android:value="com.nineinfosys.andrioddev5.paymentcalculator.MainActivityDrawer" />
+        </activity>
+        <activity android:name=".LoginActivity.Login"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+        </activity>
+
+        <activity
+            android:name=".LoginActivity.SignUp"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LoginActivity.Login" />
         </activity>
     </application>
 
