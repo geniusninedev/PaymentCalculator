@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.geniusnine.android.bmi.LoginActivity.SignUp">
+    tools:context="com.nineinfosys.andrioddev5.paymentcalculator.LoginActivity.SignUp">
 
    <!-- <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
