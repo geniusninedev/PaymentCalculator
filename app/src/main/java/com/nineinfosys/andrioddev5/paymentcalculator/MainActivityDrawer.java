@@ -31,7 +31,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -67,6 +67,7 @@ public class MainActivityDrawer extends AppCompatActivity implements View.OnClic
     private MobileServiceTable<Contacts> mobileServiceTableContacts;
     private ArrayList<Contacts> azureContactArrayList;
     private static final int PERMISSION_REQUEST_CODE = 200;
+
     //Firebase variables... for authentication and contact uploading to firebase
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListner;
@@ -76,10 +77,10 @@ public class MainActivityDrawer extends AppCompatActivity implements View.OnClic
     NavigationView mNavigationView;
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
-    ImageView profilePictureView;
+
     TextView Name,email;
     public Toolbar toolbar;
-    Intent intent;
+
 
     //designing tools declaration
     EditText editTextLoanAmount,editTextLoanTerm,editTextInterestRate;
@@ -112,7 +113,7 @@ public class MainActivityDrawer extends AppCompatActivity implements View.OnClic
         mNavigationView = (NavigationView) findViewById(R.id.shitstuff);
         Name = (TextView) mNavigationView.getHeaderView(0).findViewById(R.id.name);
         email = (TextView) mNavigationView.getHeaderView(0).findViewById(R.id.email);
-      //  profilePictureView = (ImageView) mNavigationView.getHeaderView(0).findViewById(R.id.imageView);
+
 
         /**
          * Lets inflate the very first fragment
@@ -122,7 +123,7 @@ public class MainActivityDrawer extends AppCompatActivity implements View.OnClic
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
         mNavigationView.setItemIconTintList(null);
-     //   mFragmentTransaction.replace(R.id.containerView, new DashBord()).commit();
+
 
 
         //initalization of designing tool
@@ -158,10 +159,7 @@ public class MainActivityDrawer extends AppCompatActivity implements View.OnClic
                 mDrawerLayout.closeDrawers();
 
                 if (menuItem.getItemId() == R.id.PaymentCalcualtor) {
-                  /*  FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.containerView, new BMRFragment()).commit();*/
-
-                    Intent intent = new Intent(MainActivityDrawer.this, MainActivityDrawer.class);
+                   Intent intent = new Intent(MainActivityDrawer.this, MainActivityDrawer.class);
                     finish();
                     startActivity(intent);
                 }
@@ -492,9 +490,9 @@ public class MainActivityDrawer extends AppCompatActivity implements View.OnClic
         super.onConfigurationChanged(newConfig);
         // Checks the orientation of the screen
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            //Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
+
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            //Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
+
         }
     }
 
@@ -620,7 +618,7 @@ public class MainActivityDrawer extends AppCompatActivity implements View.OnClic
                 editTextLoanTerm.setText(null);
                 break;
             case R.id.buttonPaymentMail:
-                String message="Loan Amount:"+new DecimalFormat("##.##").format(loanAmount)+"\n Interest Rate:"+new DecimalFormat("##.##").format(interest)+"\n Loan Period:"+new DecimalFormat("##.##").format(loanterm)+"\n Monthly Payment:"+new DecimalFormat("##.##").format(monthlyPayment)+"\n Total Interest Amount:"+new DecimalFormat("##.##").format(totalInterest)+"\n Total Payment:"+new DecimalFormat("##.##").format(TotalPayment)+"\n Annual Payment:"+new DecimalFormat("##.##").format(AnnualPayment);
+                String message="Loan Amount:"+new DecimalFormat("##.##").format(loanAmount)+"\n Interest Rate:"+new DecimalFormat("##.##").format(interest)+"%"+"\n Loan Period:"+new DecimalFormat("##.##").format(loanterm)+"\n Monthly Payment:"+new DecimalFormat("##.##").format(monthlyPayment)+"\n Total Interest Amount:"+new DecimalFormat("##.##").format(totalInterest)+"\n Total Payment:"+new DecimalFormat("##.##").format(TotalPayment)+"\n Annual Payment:"+new DecimalFormat("##.##").format(AnnualPayment);
                 Intent email = new Intent(Intent.ACTION_SEND);
                 email.putExtra(Intent.EXTRA_EMAIL, new String[]{ });
                 email.putExtra(Intent.EXTRA_SUBJECT, "Loan Details");
