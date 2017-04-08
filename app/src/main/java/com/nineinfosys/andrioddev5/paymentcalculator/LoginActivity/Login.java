@@ -82,8 +82,7 @@ public class Login extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
-       /* getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);*/
+
         getSupportActionBar().setTitle("Login");
 
         //AuthListener to check whether user is Login Or Not
@@ -94,10 +93,10 @@ public class Login extends AppCompatActivity {
 
                 if (mUser != null) {
                     if (mUser.isEmailVerified()) {
-                        Toast.makeText(Login.this, "You are in =)", Toast.LENGTH_LONG).show();
+                     /*   Toast.makeText(Login.this, "You are in =)", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(getApplicationContext(), MainActivityDrawer.class);
                         startActivity(intent);
-                        finish();
+                        finish();*/
                     }
                 } else {
 
