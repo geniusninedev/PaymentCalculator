@@ -47,6 +47,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.nineinfosys.andrioddev5.paymentcalculator.MainActivityDrawer;
 import com.nineinfosys.andrioddev5.paymentcalculator.R;
 
+
 import org.json.JSONObject;
 
 
@@ -93,7 +94,7 @@ public class Login extends AppCompatActivity {
 
                 if (mUser != null) {
                     if (mUser.isEmailVerified()) {
-                     /*   Toast.makeText(Login.this, "You are in =)", Toast.LENGTH_LONG).show();
+                      /*  Toast.makeText(Login.this, "You are in =)", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(getApplicationContext(), MainActivityDrawer.class);
                         startActivity(intent);
                         finish();*/
@@ -331,6 +332,7 @@ public class Login extends AppCompatActivity {
                                 //---- HERE YOU SEND THE EMAIL
                               //  mUser.sendEmailVerification();
                                 Toast.makeText(Login.this,"Verify your email first...",Toast.LENGTH_LONG).show();
+                                FirebaseAuth.getInstance().signOut();
                             }
 
 
@@ -516,7 +518,7 @@ public class Login extends AppCompatActivity {
 
         String user_id = mAuth.getCurrentUser().getUid();
         DatabaseReference current_user_db = mDataBase.child(user_id);
-        current_user_db.child("Name").setValue(user.getName());
+        current_user_db.child("name").setValue(user.getName());
         current_user_db.child("FacebookId").setValue(user.getId());
         current_user_db.child("Email").setValue(user.getEmail());
        // current_user_db.child("Gender").setValue(user.getGender());
@@ -525,7 +527,7 @@ public class Login extends AppCompatActivity {
     private void CreateGoogleUserInDataBase(){
         String user_id = mAuth.getCurrentUser().getUid();
         DatabaseReference current_user_db = mDataBaseGoogle.child(user_id);
-        current_user_db.child("Name").setValue(user.getName());
+        current_user_db.child("name").setValue(user.getName());
         current_user_db.child("GoogleId").setValue(user.getId());
         current_user_db.child("Email").setValue(user.getEmail());
 
