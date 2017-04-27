@@ -28,6 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:layout_marginTop="20dp"
             android:background="#ffffff">
             <ScrollView
                 android:layout_width="match_parent"
@@ -397,7 +398,7 @@
                                 android:layout_weight="1"
                                 android:backgroundTint="@color/btn_color"
                                 android:textStyle="bold"
-                                android:text="EMail"
+                                android:text="Email"
                                 android:background="@android:drawable/editbox_background_normal"
                                 android:textColor="@color/cardview_light_background"
                                 android:textSize="14dp" />

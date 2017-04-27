@@ -3,18 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-
-    <group android:id="@+id/grp1" android:checkableBehavior="single" >
-
-        <item
-            android:id="@+id/PaymentCalcualtor"
-            android:icon="@drawable/ic_payment"
-            android:title="Payment Calculator" />
-
-    </group>
-
-
-
     <item
            android:id="@+id/Communicate"
            android:title="Communicate" >
